@@ -43,8 +43,8 @@
 @ -- ahora el orden en el que lo introduces es el orden en el que se ejecuta en P2D
 @ -- idem para A2D
 @
-@ V3.6s
-@ ++ soporte para subversion
+@ V3.6S
+@ ++ soporte para subversion.
 
 ´
  0 1 6 0 1 2 1 1 {} {} {} 1 2 3 4 5 6 1 1 {} ç x1 x2 St nq bq pq iq j Plista Blista Bmatrix Aq Eq Iq Lq c s SELECT SEL2 postop 
