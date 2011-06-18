@@ -5,46 +5,7 @@
 @ Version: 2.10 Beta
 @ Created using HPUserEdit 5 [www.unparche.com]
 @
-@ CHANGELOG:
-@ **(Bug reparado)
-@ ++(caracteristica aÒadida)
-@ --(limitaciÛn solucionada)
-@ //(mejora de una caracterÌsitca)
-@
-@ V2.0b:
-@ // la integraciÛn en un ˙nico programa
-@ -- en los limites de nudos o barras
-@ ** en los apoyos NConc. El bucle solo llegaba hasta el apoyo
-@
-@ V2.1b:
-@ ** el problema de las modificaciones CASE (solo ejecutaba el primero que se seleccionaba)
-@
-@ V2.2b:
-@ ++ correo para consulta del personal
-@ ** problema con los apoyos no concordantes, fallaba un DUP
-@
-@ V2.3b:
-@ ** problema al aÒadir tirante que no lo montaba.
-@
-@ V2.4b:
-@ ++ la opciÛn de modificar una matriz ingresandola por variable o con MTRW
-@
-@ V2.5R:
-@ ++ cuadros de informaciÛn de que hace cada cosa en cada momento
-@
-@ V3.0A
-@ ++ articuladas en 2D
-@ // de cuadro de inicio
-@
-@ V3.1A
-@ ** numero aleatorio que salÌa al principio
-@
-@ V3.5A
-@ -- ahora el orden en el que lo introduces es el orden en el que se ejecuta en P2D
-@ -- idem para A2D
-@
-@ V3.6S
-@ ++ soporte para subversion.
+
 
 ´
  0 1 6 0 1 2 1 1 {} {} {} 1 2 3 4 5 6 1 1 {} ç x1 x2 St nq bq pq iq j Plista Blista Bmatrix Aq Eq Iq Lq c s SELECT SEL2 postop 
