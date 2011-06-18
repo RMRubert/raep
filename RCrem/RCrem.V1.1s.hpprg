@@ -1,0 +1,68 @@
+%%HP: T(0)A(D)F(.);
+@ Argumentos:
+@ Author:
+@ E-mail:
+@ Version:
+@ Created using HPUserEdit 5 [www.unparche.com]
+@
+@ V1.0
+@ ++ Soporte b·sico
+@
+@ V1.1
+@ ++ soporte para eliminar sÛlo filas
+@ ++ soporte para eliminar sÛlo columnas
+´
+  1 0 ç m3 tam sel
+  ´
+"øQUE DESEA ELIMINAR?"
+{
+{ "Filas y Columnas" ´1ª }
+{ "SÛlo Filas" ´2ª }
+{ "SÛlo Columnas" ´3ª }
+}
+1
+CHOOSE DROP EVAL 'sel' STO
+
+  "Elementos a eliminar"
+  { "{}" { 0 2 } }
+  INPUT OBJç
+  SORT DUP SIZE 'tam' STO
+  EVAL
+
+CASE
+  1 sel ==
+THEN @filas y columnas@
+  1 tam FOR j
+      m3
+      OVER
+      COL- DROP
+      OVER
+      ROW- DROP
+      'm3' STO
+      DROP
+  NEXT
+END
+   2 sel ==
+THEN
+  1 tam FOR j
+      m3
+      SWAP
+      ROW- DROP
+      'm3' STO
+  NEXT
+END
+   3 sel ==
+THEN
+  1 tam FOR j
+      m3
+      SWAP
+      COL- DROP
+      'm3' STO
+  NEXT  
+END
+
+END
+
+m3
+  ª
+ª
