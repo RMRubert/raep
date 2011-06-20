@@ -1,0 +1,49 @@
+ CHANGELOG:
+ **(Bug reparado)
+ ++(caracteristica añadida)
+ --(limitación solucionada)
+ //(mejora de una caracterísitca)
+
+ v1.0S:
+ ++ montaje de estructuras
+
+ V2.0b:
+ // la integración en un único programa
+ -- en los limites de nudos o barras
+ ** en los apoyos NConc. El bucle solo llegaba hasta el apoyo
+
+ V2.1b:
+ ** el problema de las modificaciones CASE (solo ejecutaba el primero que se seleccionaba)
+
+ V2.2b:
+ ++ correo para consulta del personal
+ ** problema con los apoyos no concordantes, fallaba un DUP
+
+ V2.3b:
+ ** problema al añadir tirante que no lo montaba.
+
+ V2.4b:
+ ++ la opción de modificar una matriz ingresandola por variable o con MTRW
+
+ V2.5R:
+ ++ cuadros de información de que hace cada cosa en cada momento
+
+ V3.0A
+ ++ articuladas en 2D
+ // de cuadro de inicio
+
+ V3.1A
+ ** numero aleatorio que salía al principio
+
+ V3.5A
+ -- ahora el orden en el que lo introduces es el orden en el que se ejecuta en P2D
+ -- idem para A2D
+
+ V3.6S
+ ++ soporte para subversion y reescritura de código
+ 
+ TODO:
+ Capaz de realizar subestructuras
+ Añadir nudos elásticos a barras
+ Nueva reescritura de codigo para utilizar subrutinas y librerias desdel el HPuserEDIT
+ 
