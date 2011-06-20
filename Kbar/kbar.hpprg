@@ -1,0 +1,168 @@
+%%HP: T(0)A(D)F(.);
+@ Argumentos:
+@ Author: Ricardo Montero Rubert
+@ E-mail: RMRubert -at- live.com
+@ Version: 0.5A
+@ 
+@ Changelog:
+@ V0.5
+@ ++ ConfiguraciÛn mÌnima requerida
+@
+@ V0.6
+@ ++ Pandeo
+@ ** Si el angulo era distinto de cero (pandeo)
+@ ** arreglado el problema del valor predeterminado.
+
+´
+ 0 1 1 1 1 1 0 0 1 1 ç select Aq Eq Iq Lq ph c s j k
+  ´
+"+--------------------+" 1 DISP 
+"|    Kbar  V:3.0A    |" 2 DISP 
+"| versiÛn de prueba  |" 3 DISP 
+"|                    |" 4 DISP 
+"| Ricardo M. Rubert  |" 5 DISP 
+"|                    |" 6 DISP 
+"|  RMRubert@live.com |" 7 DISP 
+"|                    |" 8 DISP 
+"+--------------------+" 9 DISP 0 WAIT DROP
+
+
+"øCALCULAR MATRIZ DE"
+{
+{ "Portico 2D" ´1ª }
+{ "Articulada 2D" ´2ª }
+{ "Inestabilidad 2D" ´3ª }
+}
+1
+CHOOSE DROP EVAL 'select' STO
+
+CASE
+  select 1 ==
+THEN
+@CÛdigo de P2D@
+
+"BARRA: P”RTICO 2D"
+{
+{ "A" "¡rea" 0 }
+{ "E" "MÛdulo de elasticidad" 0 }
+{ "I" "Momento de inercia" 0 }
+{ "L" "Longitud" 0 }
+{ "å" "¡ngulo seg˙n Sist. Referencia" 0 }
+}
+{ 2 0 }
+{ }
+{ }
+INFORM DROP EVAL
+'ph' STO
+'Lq' STO 'Iq' STO 'Eq' STO 'Aq' STO
+     
+     Eq Aq * Lq / 0 0  Eq Aq * Lq / NEG  0 0
+     
+     0 @@ 12 Eq * Iq * Lq 3 ^ / @@ 6 Eq * Iq * Lq 2 ^ / @@ 0 @@ 12 Eq * Iq * Lq 3 ^ / NEG @@ 6 Eq * Iq * Lq 2 ^ /
+     
+     0 6 Eq * Iq * Lq 2 ^ / 4 Eq * Iq * Lq /  0 6 Eq * Iq * Lq 2 ^ / NEG 2 Eq * Iq * Lq /
+     
+     Eq Aq * Lq / NEG 0 0  Eq Aq * Lq /  0 0
+     
+     0 @@ 12 Eq * Iq * Lq 3 ^ / NEG @@ 6 Eq * Iq * Lq 2 ^ / NEG @@ 0 @@ 12 Eq * Iq * Lq 3 ^ / @@ 6 Eq * Iq * Lq 2 ^ / NEG
+     
+     0 6 Eq * Iq * Lq 2 ^ / 2 Eq * Iq * Lq /  0 6 Eq * Iq * Lq 2 ^ / NEG 4 Eq * Iq * Lq /
+{6 6} çARRY
+ph COS 'c' STO
+ph SIN 's' STO
+   @Matriz G: M=G*Mo*G'   
+   c s NEG 0 0 0 0  
+   s c 0 0 0 0  
+   0 0 1 0 0 0 
+   0 0 0 c s NEG 0  
+   0 0 0 s c 0  
+   0 0 0 0 0 1 
+   {6 6} çARRY
+   SWAP OVER TRAN * *
+   
+END
+   select 2 ==
+THEN
+@Codigo de articulada@
+
+"BARRA: ARTÕCULADA 2D"
+{
+{ "A" "Area de la secciÛn" 0 }
+{ "E" "Elasticidad" 0 }
+{ "L" "Longitud de la barra" 0 }
+{ "å" "¡ngulo seg˙n sist. referencia" 0 }
+}
+{ 2 0 }
+{ }
+{ }
+INFORM DROP EVAL
+'ph' STO 'Lq' STO 'Eq' STO 'Aq' STO
+ph COS DUP 2 ^ 'c' STO
+ph SIN DUP 2 ^ 's' STO
+* 'ph' STO
+
+    c ph  c NEG ph NEG 
+  ph s  ph NEG s NEG 
+  
+  c NEG ph NEG  c ph 
+  ph NEG s NEG  ph s 
+  {4 4} çARRY
+
+Eq * Aq * Lq /
+
+END
+   select 3 ==
+THEN
+"MATRIZ DE PANDEO"
+{
+{ "A" "Area de la secciÛn" 0 }
+{ "E" "Modulo de elasticidad" 0 }
+{ "I" "Inercia de la barra" 0 }
+{ "L" "Longitud de la barra" 0 }
+{ "a" "¡ngulo de la barra" 0 }
+}
+{ 2 0 }
+{ }
+{ NOVAL NOVAL NOVAL NOVAL 0 }
+INFORM DROP EVAL
+'ph' STO 'Lq' STO 'Iq' STO 'Eq' STO 'Aq' STO
+
+'C1' 'C2' 'C3' 'C4' PURGE PURGE PURGE PURGE
+
+Eq Aq * Lq /   0   0   Eq NEG Aq * Lq /   0    0
+0     C4 Eq * Iq * Lq 3 ^ /    C1 Eq * Iq * Lq 2 ^ /   0  C4 NEG Eq * Iq * Lq 3 ^ /   C1 Eq * Iq * Lq 2 ^ /
+0     C1 Eq * Iq * Lq 2 ^ /    C2 Eq * Iq * Lq /   0     C1 NEG Eq * Iq * Lq 2 ^ /    C3 Eq * Iq * Lq /
+
+Eq NEG Aq * Lq /   0   0   Eq Aq * Lq /   0    0
+0     C4 NEG Eq * Iq * Lq 3 ^ /    C1 NEG Eq * Iq * Lq 2 ^ /   0  C4 Eq * Iq * Lq 3 ^ /   C1 NEG Eq * Iq * Lq 2 ^ /
+0     C1 Eq * Iq * Lq 2 ^ /    C3 Eq * Iq * Lq /   0     C1 NEG Eq * Iq * Lq 2 ^ /    C2 Eq * Iq * Lq /
+
+{6 6} çARRY
+
+IF ph
+THEN
+@giro@
+ph COS 'c' STO
+ph SIN 's' STO
+   @Matriz G: M=G*Mo*G'   
+   c s NEG 0 0 0 0  
+   s c 0 0 0 0  
+   0 0 1 0 0 0 
+   0 0 0 c s NEG 0  
+   0 0 0 s c 0  
+   0 0 0 0 0 1 
+   {6 6} çARRY
+   SWAP OVER TRAN * *
+   
+   1 6 FOR j
+   1 6 FOR k
+     DUP {'j' 'k'} GET EVAL {'j' 'k'} SWAP PUT
+   NEXT
+   NEXT
+END
+
+END
+
+END
+  ª
+ª
