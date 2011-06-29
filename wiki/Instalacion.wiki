@@ -1,0 +1,6 @@
+= Descarga =
+
+Descarga y extrae la biblioteca (library). Los ficheros .7z se pueden abrir usando programas como [http://www.7-zip.org/download.html 7zip],[http://www.peazip.org/ PeaZip] o [http://www.winrar.es/descargas WinRar].
+
+Tras esto deberás copiar tu biblioteca a la tarjeta SSD de la HP50g y proceder con la instalación (yo recomiendo en el puerto 2) y habiendo borrado cualquier versión anterior. Tienes un tutorial más detallado sobre instalar bibliotecas si eres nuevo en: http://www.danielmunoz.com.ar/blog/2009/07/27/como-instalar-una-libreria-en-la-hp-50g49g/
+
