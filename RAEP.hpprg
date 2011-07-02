@@ -7,6 +7,62 @@
 
 DIR
 
+ @ .d8888b.   .d8888b.  8888888b.  
+@ d88P  Y88b d88P  Y88b 888  "Y88b 
+@ 888    888        888 888    888 
+@ 888             .d88P 888    888 
+@ 888         .od888P"  888    888 
+@ 888    888 d88P"      888    888 
+@ Y88b  d88P 888"       888  .d88P 
+ @ "Y8888P"  888888888  8888888P"  
+   C2D
+   ´
+2 0ç Bmatrix nudo St iq
+@El programa toma de la pila la matriz a condensar Bmatrix y el nudo
+@devuelve la matriz condensada.
+  ´
+
+Bmatrix EVAL SIZE EVAL DROP 'St' STO
+@El proceso consiste siempre en coger la matriz de la barra
+@y aÒadirle ceros en alg˙n lugar para que sea idÈntica a sus
+@homonimas de 5x5, 5x1 y 1x5 siendo 6x6, 6x1 y 1x6 pero con un cero
+@donde antes estaba el grado de libertad.
+@Ejemplo, si el grado de libertad es el 4, la fila y columna de la matriz MM
+@ seran de 0, y los vectores MN y NM tendran un cero en la posiciÛn 4.
+
+@MM
+'Bmatrix' EVAL @Sacamos la matriz para modificarla
+
+1 St FOR iq 0 NEXT {1 St} çARRY    @Creamos la fila de ceros 
+{nudo 1} SWAP REPL           @Insernudoos dicha fila en el n∫ de fila del grado de liberta
+1 St FOR iq 0 NEXT  {St 1} çARRY    @Creamos la columna de ceros
+{1 nudo} SWAP REPL           @Insernudoos dicha columna en la posicion del grado de libertad
+@/MM  ATENCI”N: se queda en la pila almacenada, las siguientes nudobiÈn.
+
+@MN
+'Bmatrix' EVAL             @Sacamos la matriz para cortarla
+{1 nudo} {St nudo} SUB          @Nos quedamos con la columna del grado a liberar (la que hemos llenado de ceros la vez anterior)
+0 {1 1} çARRY              @Creamos una matriz unitaria de un 0 [[0]]
+{nudo 1} SWAP REPL           @Insernudoos un cero en la posiciÛn del grado libertad (es decir el elemento correspondiente a NN)
+@/MN  ATENCI”N: se queda en la pila almacenada
+
+@NN^-1  OJO QUE YA VA INVERTIDO!!
+'Bmatrix' EVAL
+{nudo nudo} {nudo nudo} SUB INV    @Extraemos el elemento correspondiente al NN y lo invertimos
+@/NN^-1  ATENCI”N: se queda en la pila almacenada
+
+@NM
+'Bmatrix' EVAL             @Idem que MN pero con fila en vez de columna
+{nudo 1} {nudo St} SUB
+0 {1 1} çARRY 
+{1 nudo} SWAP REPL
+@/NM  ATENCI”N: se queda en la pila almacenada
+
+* * - @Hacemos: MM - MN*(NN^-1 * NM)
+  ª
+ª
+
+
 @ 8888888b.   .d8888b.  8888888b.  8888888888 888b     d888 
 @ 888   Y88b d88P  Y88b 888   Y88b 888        8888b   d8888 
 @ 888    888 888    888 888    888 888        88888b.d88888 
@@ -1072,7 +1128,7 @@ CHOOSE DROP EVAL
     ´ 956 ATTACH ª               @ ´ #integer ATTACH ª         @
 
   $HIDDEN
-    { }                      @ { hidden identifiers ...  } @
+    { C2D }                      @ { hidden identifiers ...  } @
 
   $VISIBLE
     { KEST KBAR RCREM }                      @ { visible identifiers ... } @
