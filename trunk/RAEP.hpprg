@@ -1,11 +1,12 @@
 %%HP: T(0)A(D)F(.);
 @ Argumentos:
-@ Author:
-@ E-mail:
-@ Version:
+@ Author: Ricardo Montero Rubert  
+@ E-mail: RMRubert -4T- gmail -D0T- com
+@ Version: r13
 @ Created using HPUserEdit 5 [www.unparche.com]
 
 DIR
+
 @ 8888888b.   .d8888b.  8888888b.  8888888888 888b     d888 
 @ 888   Y88b d88P  Y88b 888   Y88b 888        8888b   d8888 
 @ 888    888 888    888 888    888 888        88888b.d88888 
