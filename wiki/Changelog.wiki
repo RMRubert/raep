@@ -1,0 +1,36 @@
+= V10=
+ _En progreso_
+ * Reescritura del código como una única libreria con subrutinas
+ * Añadido soporte para condensar barras en KBAR
+
+----
+= v7, v8, v9 =
+ * Cambios menores y resuelto el bug del numero aleatorio en la pila
+
+----
+= v6 =
+ * Añadido soporte a RCREM para eliminar filas y columnas.
+
+----
+= V5 =
+ * Añadido subprograma RCREM para eliminar o filas o columnas.
+
+----
+= V4 =
+ * Las operaciones post-montaje ahora se hacen en el orden en el que son ejecutadas.
+
+----
+= V3 =
+ * Soporte para barras A2D
+
+----
+= V2 =
+ * Reparado bug al realizar apoyos no concordantes
+ * Reescritura entera del código para tener todo en una única interfaz.
+
+----
+= V1 =
+ * Es capaz de montar matrices de barras P2D
+ * Condensa barras
+ * Añade nudos elasticos
+ * Añade apoyos no concordantes
