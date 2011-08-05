@@ -41,9 +41,13 @@
 
  V3.6S
  ++ soporte para subversion y reescritura de código
+ ¿? Versión desechada por imposibilidad técnica.
+ 
+ V4.0A
+ ++ Incluida capacidad de subestructuras en Kest
+ // Sintaxis y lectura del código
  
  TODO:
- Capaz de realizar subestructuras
  Añadir nudos elásticos a barras
- Nueva reescritura de codigo para utilizar subrutinas y librerias desdel el HPuserEDIT
+ Nueva reescritura de codigo para utilizar subrutinas y librerias desdel el HPuserEDIT (Descartado)
  

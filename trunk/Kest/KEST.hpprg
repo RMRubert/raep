@@ -2,7 +2,7 @@
 @ Argumentos:
 @ Author: Ricardo M. Rubert
 @ E-mail: RMRubert -at- gmail.com
-@ Version: 3.9 alpha
+@ Version: 4.0 alpha
 @ Created using HPUserEdit 5 [www.unparche.com]
 @
 
@@ -12,7 +12,7 @@
   ´
 
 "+--------------------+" 1 DISP 
-"|    Kest  V:3.9a    |" 2 DISP 
+"|    Kest  V:4.0a    |" 2 DISP 
 "|  Licencia: newBSD  |" 3 DISP 
 "|                    |" 4 DISP 
 "| Ricardo M. Rubert  |" 5 DISP 
@@ -297,47 +297,47 @@ CASE
 			
 			SELECT 6 ==
 			THEN @Subestructuras        
-        "SUBESTRUCTURAS"
-        {
-        { "PROPIEDAD" "de las barras a sustituir" 0 }
-        { "MATRIZ" "por la que se sustituye." 3 }
-        }
-        { 1 0 }
-        { }
-        { }
-        INFORM DROP EVAL
-        'x2' STO 'x1' STO
-        @Buscamos las barras con la propiedad x1
-        1 bq
-        FOR iq
-          'Blista(iq)' EVAL 5 GET x1 ==
-          IF
-          THEN
-            @Sacamos la matriz a la pila
-            x2
-            
-            @Giramos matriz
-            'Blista(iq)' EVAL 4 GET
-            IF
-            THEN
-              'Blista(iq)' EVAL 4 GET DUP
-              COS 'c' STO
-              SIN 's' STO
-              @Generamos la matriz de giro (Copy/paste de G2D v1.03): Matriz G: M=G*Mo*G'
-	             c s NEG 0 0 0 0  
-	             s c 0 0 0 0  
-	             0 0 1 0 0 0 
-	             0 0 0 c s NEG 0  
-	             0 0 0 s c 0  
-	             0 0 0 0 0 1 
-	             {6 6} çARRY
-	            @Fin de generar la Matriz de giro: Matriz G: M=G*Mo*G'
-	            SWAP OVER TRAN * * @Hacemos M,G -> G,M -> G,M,G -> G,M,G' y multiplicamos
-            END
-            @Sustituimos matriz
-            'Bmatrix(iq)' STO
-          END @If
-        NEXT @for
+				"SUBESTRUCTURAS"
+				{
+				{ "PROPIEDAD" "de las barras a sustituir" 0 }
+				{ "MATRIZ" "por la que se sustituye." 3 }
+				}
+				{ 1 0 }
+				{ }
+				{ }
+				INFORM DROP EVAL
+				'x2' STO 'x1' STO
+				@Buscamos las barras con la propiedad x1
+				1 bq
+				FOR iq
+				  'Blista(iq)' EVAL 5 GET x1 ==
+				  IF
+				  THEN
+					@Sacamos la matriz a la pila
+					x2
+					
+					@Giramos matriz
+					'Blista(iq)' EVAL 4 GET
+					IF
+					THEN
+					  'Blista(iq)' EVAL 4 GET DUP
+					  COS 'c' STO
+					  SIN 's' STO
+					  @Generamos la matriz de giro (Copy/paste de G2D v1.03): Matriz G: M=G*Mo*G'
+						 c s NEG 0 0 0 0  
+						 s c 0 0 0 0  
+						 0 0 1 0 0 0 
+						 0 0 0 c s NEG 0  
+						 0 0 0 s c 0  
+						 0 0 0 0 0 1 
+						 {6 6} çARRY
+						@Fin de generar la Matriz de giro: Matriz G: M=G*Mo*G'
+						SWAP OVER TRAN * * @Hacemos M,G -> G,M -> G,M,G -> G,M,G' y multiplicamos
+					END
+					@Sustituimos matriz
+					'Bmatrix(iq)' STO
+				  END @If
+				NEXT @for
 			END @THENCASE			
 		END @CASE
 		
@@ -468,373 +468,372 @@ CASE
 	@###################################################################################@
 	@###################################################################################@
 	END
-	   SEL2 2 ==
+	SEL2 2 ==
 	THEN
-	"INSERTE N⁄MERO DE:"
-	{
-	{ "N" "Nudos" 0 }
-	{ "B" "Barras" 0 }
-	{ "P" "Propiedades, (Diferentes AEI)" 0 }
-	}
-	{ 3 0 }
-	{ }
-	{ }
-	INFORM DROP EVAL
-	'pq' STO 'bq' STO 'nq' STO
+		"INSERTE N⁄MERO DE:"
+		{
+		{ "N" "Nudos" 0 }
+		{ "B" "Barras" 0 }
+		{ "P" "Propiedades, (Diferentes AEI)" 0 }
+		}
+		{ 3 0 }
+		{ }
+		{ }
+		INFORM DROP EVAL
+		'pq' STO 'bq' STO 'nq' STO
 
 
-	1 pq FOR iq
-	  @"{A E I} Prop:" iq +
-	  @{ "{}" { 0 2 } }
-	  @INPUT OBJç
-	   
-	   "INSERTE PROPIEDAD: " iq +
-	   {
-	   { "A" "Area de la secciÛn" 0 }
-	   { "E" "MÛdulo de elasticidad" 0 }
-	   }
-	   { 1 0 }
-	   { }
-	   { }
-	   INFORM DROP
-	  Plista 0 + 'Plista' STO
-	  'Plista(iq)' STO
-	  
-	NEXT
-	@Plista
-
-	1 bq FOR iq
-	  @"{Ni Nf L a Prop}
-	  @Barra " iq +
-	  @{ "{}" { 0 2 } }
-	  @INPUT OBJç 
-	  
-	  "BARRA: " iq +
-			{
-			{ "Ni" "Nudo inicial" 0 }
-			{ "Nf" "Nudo final" 0 }
-			{ "L" "Longitud de la barra" 0 }
-			{ "å" "¡ngulo seg˙n criterio" 0 }
-			{ "Prop" "N∫ de Propiedad" 0 }
-			}
-			{ 2 0 }
-			{ }
-			{ }
-			INFORM DROP
-			Blista 0 + 'Blista' STO
-			'Blista(iq)' STO
-	NEXT
-	@Blista 
-	@Sacamos la submatriz de cada barra A E I L å
-
-	1 bq FOR iq
-	  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
-	  "Generando la matriz" 1 DISP -1 FREEZE
-	  "de la barra " iq + 2 DISP -1 FREEZE
-	  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
-	  'Blista(iq)' EVAL 5 GET 'x1' STO @Sacamos la propiedad de la barra iq
-	  'Plista(x1)' EVAL EVAL @Sacamos las propiedades en orden inverso E A
-	  'Eq' STO
-	  'Aq' STO
-	  'Blista(iq)' EVAL 3 GET 'Lq' STO @Sacamos la longitud
-	  'Blista(iq)' EVAL 4 GET 'x1' STO @Sacamos el angulo de la barra y calculamos cos y sin
-	  @C es cos2, s es sin2, x2 es SIN*COS
-	  x1 COS DUP 2 ^ 'c' STO
-	  x1 SIN DUP 2 ^ 's' STO
-	  * 'x2' STO
-		c x2  c NEG x2 NEG 
-	  x2 s  x2 NEG s NEG 
-	  
-	  c NEG x2 NEG  c x2 
-	  x2 NEG s NEG  x2 s 
-	  {4 4} çARRY
-	  Eq * Aq * Lq /
-
-	  Bmatrix 0 + 'Bmatrix' STO
-	  'Bmatrix(iq)' STO
-	  
-	NEXT
-
-	@ Modificaciones
-	@ ##############
-
-	-90 SF 
-	"MODIFICACIONES:"
-	{
-	{ "Contruir YA!" ´0ª }
-	{ "Condensar una barra" ´1ª }
-	@{ "AÒadir tirante" ´2ª }@
-	{ "AÒadir apoyo flexible" ´3ª }
-	{ "Apoyo no concordante" ´4ª }
-	{ "Mod. matriz de barra" ´5ª }
-	}
-	1
-	CHOOSE DROP EVAL 'SELECT' STO
-
-	SELECT
-
-	WHILE 
-	REPEAT
-
-	CASE
-	  SELECT 1 ==
-	THEN @CÛdigo de condensar una barra
-	"CONDENSAR BARRA:"
-	{
-	{ "B" "N∫ de barra" 0 }
-	{ "G" "Grado a condensar" 0 }
-	}
-	{ 1 0 }
-	{ }
-	{ }
-	INFORM DROP
-	EVAL
-	@###x2=grado
-	'x2' STO 
-	@###x1=barra
-	'x1' STO 
-	'Bmatrix(x1)' EVAL SIZE EVAL DROP 'St' STO 
-	@MM
-	'Bmatrix(x1)' EVAL
-	1 St FOR iq 0 NEXT {1 St} çARRY
-	{x2 1} SWAP REPL
-	1 St FOR iq 0 NEXT  {St 1} çARRY 
-	{1 x2} SWAP REPL
-	@/MM
-
-	@MN
-	'Bmatrix(x1)' EVAL 
-	{1 x2} {St x2} SUB
-	0 {1 1} çARRY 
-	{x2 1} SWAP REPL
-	@/MN
-
-	@NN^-1  OJO QUE YA VA INVERTIDO!!
-	'Bmatrix(x1)' EVAL
-	{x2 x2} {x2 x2} SUB INV
-	@/NN^-1
-
-	@NM
-	'Bmatrix(x1)' EVAL 
-	{x2 1} {x2 St} SUB
-	0 {1 1} çARRY 
-	{1 x2} SWAP REPL
-	@/NM
-
-	* * -
-	'Bmatrix(x1)' STO
-	END
-	   @SELECT 2 ==
-	@THEN 
-	@CÛdigo del tirante@
-	@"A—ADIR TIRANTE"
-	@{
-	@{ "Ni" "Nudo inicial" 0 }
-	@{ "Nf" "Nudo final" 0 }
-	@{ "A" "¡rea" 0 }
-	@{ "E" "Modulo de Elasticidad" 0 }
-	@{ "L" "Longitud de la barra" 0 }
-	@{ "å" "¡ngulo" 0 }
-	@}
-	@{ 2 0 }
-	@{ }
-	@{ }
-	@INFORM DROP
-	@Pedimos los datos y los aÒadimos en Blista.
-	@Blista 0 + 'Blista' STO 
-	@Blista SIZE 'iq' STO
-	@'Blista(iq)' STO
-	@Sacamos el angulo
-	@'Blista(iq)' EVAL 6 GET 'x1' STO
-	@x1 DUP COS EVAL DUP DUP * 'c' STO SWAP SIN EVAL DUP DUP * 's' STO * 'x2' STO
-	  
-	@Construir la matriz para aÒadirla, c=cos≤, s=sin≤, x2= cos*sin  
-	  @c x2 0 c NEG x2 NEG 0
-	  @x2 s 0 x2 NEG s NEG 0
-	  @0 0 0 0     0     0
-	  @c NEG x2 NEG 0 c x2 0
-	  @x2 NEG s NEG 0 x2 s 0
-	  @0     0     0 0 0 0
-	  @{6 6} çARRY
-	@'Blista(iq)' EVAL 3 GET *
-	@'Blista(iq)' EVAL 4 GET *
-	@'Blista(iq)' EVAL 5 GET /
-	@Procedemos a guardar la matriz.
-	@Bmatrix 0 + 'Bmatrix' STO
-	@Hemos aÒadido ya un 0, por ello SIZE da el resultado correcto@
-	@Bmatrix SIZE 'iq' STO 
-	@'Bmatrix(iq)' STO
-	@AÒadimos una barra m·s al contandor@
-	@bq 1 + 'bq' STO
-	@END
-	   SELECT 3 ==
-	THEN @Apoyo flexible
-	"NUDO EL¡STICO"
-	{
-	{ "N" "Nudo el·stico" 0 }
-	{ "Kx" "El·sticidad en x" 0 }
-	{ "Ky" "El·sticidad en y" 0 }
-	}
-	{ 2 0 }
-	{ }
-	{ }
-	INFORM DROP
-			postop 0 + 'postop' STO
-			postop SIZE 'iq' STO
-			'postop(iq)' STO
-	END
-	   SELECT 4 ==
-	THEN @Apoyo no concordante.
-	  
-	"APOYO NO CONCORDANTE"
-	{
-	{ "N" "Nudo no concordante" 0 }
-	{ "a" "¡ngulo. Cuidado con las unidades y el SR" 0 }
-	}
-	{ 1 0 }
-	{ }
-	{ }
-	INFORM DROP
-			postop 0 + 'postop' STO
-			postop SIZE 'iq' STO
-			'postop(iq)' STO
-	END
-	   SELECT 5 ==
-	THEN
-	  
-	"MODIFICAR MATRIZ DE UNA BARRA"
-	{
-	{ "B" "N∫ de barra a modificar" 0 }
-	{ "INSERTAR MATRIZ" "Insertar la matriz" 3 }
-	}
-	{ 1 0 }
-	{ }
-	{ }
-	INFORM DROP EVAL
-	SWAP 'iq' STO
-	'Bmatrix(iq)' STO 
-
-	END
-
-	END
-
-
-	@Salida del bucle
-	"MODIFICACIONES:"
-	{
-	{ "Contruir YA!" ´0ª }
-	{ "Condensar una barra" ´1ª }
-	@{ "AÒadir tirante" ´2ª }@
-	{ "AÒadir apoyo flexible" ´3ª }
-	{ "Apoyo no concordante" ´4ª }
-	{ "Mod. matriz de barra" ´5ª }
-	}
-	1
-	CHOOSE DROP EVAL 'SELECT' STO
-	SELECT
-	END
-
-
-	@Tenemos que crear ahora la Matriz general de la estructura de dimension 3nq∑3nq
-
-	nq 2 * @Generamos la matriz de la estructura llena de cero
-	IDN 0 * @Su finalidad es poder hacer un + al final de cada bucle sin preocuparse por la primera
-	 
-	1 bq FOR iq  @Iniciamos el bucle
-		 
-	  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
-	  "Anexionando la matriz " 1 DISP -1 FREEZE
-	  "de la barra " iq + 2 DISP -1 FREEZE
-	  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
-
-		@Generamos la matriz de la estructura llena de cero
-		nq 2 * IDN 0 * @Matriz estructura llena de ceros terminada
-		@Ahora rellenamos la matriz con las submatrices
-		'Blista(iq)' EVAL 1 GET 'x1' STO @Sacamos el nudo 1
-		'Blista(iq)' EVAL 2 GET 'x2' STO @Sacamos el nudo 2
-		@   [1 | 2]
-		@M= [-----]
-		@   [3 | 4]
-		'Bmatrix(iq)' EVAL {1 1} {2 2} SUB @Sacamos la submatriz 1
-		{'x1*2-1' 'x1*2-1'} SWAP REPL @Incorporamos en la global
-		'Bmatrix(iq)' EVAL {1 3} {2 4} SUB @Sacamos la submatriz 2
-		{'x1*2-1' 'x2*2-1'} SWAP REPL
-		'Bmatrix(iq)' EVAL {3 1} {4 2} SUB @Sacamos la submatriz 3
-		{'x2*2-1' 'x1*2-1'} SWAP REPL
-		'Bmatrix(iq)' EVAL {3 3} {4 4} SUB @Sacamos la submatriz 4
-		{'x2*2-1' 'x2*2-1'} SWAP REPL
-		+ @Sumamos a la matriz anterior.
-	NEXT
-
-	@Se realizan las modificaciones seg˙n el orden que se han dado
-	@a continuaciÛn, se selecciona la modificacion usando el tamaÒo
-	@de la lista interior a postop si es de 3 es un Aflex si es 2 es Anoc
-
-	IF postop SIZE
-	THEN
-
-		1 postop SIZE FOR iq
-		'postop(iq)' EVAL SIZE 'SELECT' STO
+		1 pq FOR iq
+		  @"{A E I} Prop:" iq +
+		  @{ "{}" { 0 2 } }
+		  @INPUT OBJç
+		   
+		   "INSERTE PROPIEDAD: " iq +
+		   {
+		   { "A" "Area de la secciÛn" 0 }
+		   { "E" "MÛdulo de elasticidad" 0 }
+		   }
+		   { 1 0 }
+		   { }
+		   { }
+		   INFORM DROP
+		  Plista 0 + 'Plista' STO
+		  'Plista(iq)' STO
 		  
-		  CASE
-				  3 SELECT ==
-				  @ Apoyo flexible
-			  THEN
-				  DUP
-				  'postop(iq)' EVAL 1 GET 'x1' STO
-				  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
-				  "Incluyendo el·stico " 1 DISP -1 FREEZE
-				  "de la barra " x1 + 2 DISP -1 FREEZE
-				  @ $$$$$$$$$$$$$$$$$$$$$$$$ @        
-				  {'x1*2-1' 'x1*2-1'} {'x1*2' 'x1*2'} SUB
-				  
-				  'postop(iq)' EVAL 2 GET 0 
-				  0 'postop(iq)' EVAL 3 GET 
-				  {2 2} çARRY 
-				  
-				  +
-				  {'x1*2-1' 'x1*2-1'} SWAP REPL
-			  END
-				 2 SELECT ==
-				 @ Apoyo no concordante
-			  THEN
-
-				  DUP
-				  'postop(iq)' EVAL EVAL
-				  DUP COS 'c' STO SIN 's' STO
-				  'x1' STO @nudo
-			
-				  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
-				  "Girando apoyo " 1 DISP -1 FREEZE
-				  "de la barra " x1 + 2 DISP -1 FREEZE
-				  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
-			
-				  @Generamos la matriz de giro@
-				  c s NEG
-				  s c
-				  {2 2} çARRY
-				  'x2' STO @Ld@
-				  @Multiplicamos Ld' por la izda@
-				  1 nq  FOR j
-					DUP
-					{'2*x1-1' '2*j-1'} {'2*x1' '2*j'} SUB
-					x2 TRAN SWAP *
-					{'2*x1-1' '2*j-1'} SWAP REPL 
-				  NEXT
-				  @Multiplicamos Ld por la drcha@
-				  1 nq  FOR j
-					DUP
-					{'2*j-1' '2*x1-1'} {'2*j' '2*x1'} SUB
-					x2 *
-					{'2*j-1' '2*x1-1'} SWAP REPL 
-				  NEXT               
-			  END
-
-		  END
-		
 		NEXT
-	END
-	 
+		@Plista
+
+		1 bq FOR iq
+		  @"{Ni Nf L a Prop}
+		  @Barra " iq +
+		  @{ "{}" { 0 2 } }
+		  @INPUT OBJç 
+		  
+		  "BARRA: " iq +
+				{
+				{ "Ni" "Nudo inicial" 0 }
+				{ "Nf" "Nudo final" 0 }
+				{ "L" "Longitud de la barra" 0 }
+				{ "å" "¡ngulo seg˙n criterio" 0 }
+				{ "Prop" "N∫ de Propiedad" 0 }
+				}
+				{ 2 0 }
+				{ }
+				{ }
+				INFORM DROP
+				Blista 0 + 'Blista' STO
+				'Blista(iq)' STO
+		NEXT
+		@Blista 
+		@Sacamos la submatriz de cada barra A E I L å
+
+		1 bq FOR iq
+		  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
+		  "Generando la matriz" 1 DISP -1 FREEZE
+		  "de la barra " iq + 2 DISP -1 FREEZE
+		  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
+		  'Blista(iq)' EVAL 5 GET 'x1' STO @Sacamos la propiedad de la barra iq
+		  'Plista(x1)' EVAL EVAL @Sacamos las propiedades en orden inverso E A
+		  'Eq' STO
+		  'Aq' STO
+		  'Blista(iq)' EVAL 3 GET 'Lq' STO @Sacamos la longitud
+		  'Blista(iq)' EVAL 4 GET 'x1' STO @Sacamos el angulo de la barra y calculamos cos y sin
+		  @C es cos2, s es sin2, x2 es SIN*COS
+		  x1 COS DUP 2 ^ 'c' STO
+		  x1 SIN DUP 2 ^ 's' STO
+		  * 'x2' STO
+			c x2  c NEG x2 NEG 
+		  x2 s  x2 NEG s NEG 
+		  
+		  c NEG x2 NEG  c x2 
+		  x2 NEG s NEG  x2 s 
+		  {4 4} çARRY
+		  Eq * Aq * Lq /
+
+		  Bmatrix 0 + 'Bmatrix' STO
+		  'Bmatrix(iq)' STO
+		  
+		NEXT
+
+		@ Modificaciones
+		@ ##############
+
+		-90 SF 
+		"MODIFICACIONES:"
+		{
+		{ "Contruir YA!" ´0ª }
+		{ "Condensar una barra" ´1ª }
+		{ "AÒadir apoyo flexible" ´3ª }
+		{ "Apoyo no concordante" ´4ª }
+		{ "Mod. matriz de barra" ´5ª }
+		{ "Subestructura" ´6ª }
+		}
+		1
+		CHOOSE DROP EVAL 'SELECT' STO
+
+		SELECT
+
+		WHILE 
+		REPEAT
+			CASE
+				SELECT 1 ==
+				THEN @CÛdigo de condensar una barra
+					"CONDENSAR BARRA:"
+					{
+					{ "B" "N∫ de barra" 0 }
+					{ "G" "Grado a condensar" 0 }
+					}
+					{ 1 0 }
+					{ }
+					{ }
+					INFORM DROP
+					EVAL
+					@###x2=grado
+					'x2' STO 
+					@###x1=barra
+					'x1' STO 
+					'Bmatrix(x1)' EVAL SIZE EVAL DROP 'St' STO 
+					@MM
+					'Bmatrix(x1)' EVAL
+					1 St FOR iq 0 NEXT {1 St} çARRY
+					{x2 1} SWAP REPL
+					1 St FOR iq 0 NEXT  {St 1} çARRY 
+					{1 x2} SWAP REPL
+					@/MM
+
+					@MN
+					'Bmatrix(x1)' EVAL 
+					{1 x2} {St x2} SUB
+					0 {1 1} çARRY 
+					{x2 1} SWAP REPL
+					@/MN
+
+					@NN^-1  OJO QUE YA VA INVERTIDO!!
+					'Bmatrix(x1)' EVAL
+					{x2 x2} {x2 x2} SUB INV
+					@/NN^-1
+
+					@NM
+					'Bmatrix(x1)' EVAL 
+					{x2 1} {x2 St} SUB
+					0 {1 1} çARRY 
+					{1 x2} SWAP REPL
+					@/NM
+
+					* * -
+					'Bmatrix(x1)' STO
+				END @then
+				
+				SELECT 3 ==
+				THEN @Apoyo flexible
+					"NUDO EL¡STICO"
+					{
+					{ "N" "Nudo el·stico" 0 }
+					{ "Kx" "El·sticidad en x" 0 }
+					{ "Ky" "El·sticidad en y" 0 }
+					}
+					{ 2 0 }
+					{ }
+					{ }
+					INFORM DROP
+							postop 0 + 'postop' STO
+							postop SIZE 'iq' STO
+							'postop(iq)' STO
+				END @then
+				
+				SELECT 4 ==
+				THEN @Apoyo no concordante.
+					  
+					"APOYO NO CONCORDANTE"
+					{
+					{ "N" "Nudo no concordante" 0 }
+					{ "a" "¡ngulo. Cuidado con las unidades y el SR" 0 }
+					}
+					{ 1 0 }
+					{ }
+					{ }
+					INFORM DROP
+							postop 0 + 'postop' STO
+							postop SIZE 'iq' STO
+							'postop(iq)' STO
+				END @then
+				
+				SELECT 5 ==
+				THEN  
+					"MODIFICAR MATRIZ DE UNA BARRA"
+					{
+					{ "B" "N∫ de barra a modificar" 0 }
+					{ "INSERTAR MATRIZ" "Insertar la matriz" 3 }
+					}
+					{ 1 0 }
+					{ }
+					{ }
+					INFORM DROP EVAL
+					SWAP 'iq' STO
+					'Bmatrix(iq)' STO 
+				END @then
+				
+				SELECT 6 ==
+				THEN @Subestructuras        
+					"SUBESTRUCTURAS"
+					{
+					{ "PROPIEDAD" "de las barras a sustituir" 0 }
+					{ "MATRIZ" "por la que se sustituye." 3 }
+					}
+					{ 1 0 }
+					{ }
+					{ }
+					INFORM DROP EVAL
+					'x2' STO 'x1' STO
+					@Buscamos las barras con la propiedad x1
+					1 bq
+					FOR iq
+					  'Blista(iq)' EVAL 5 GET x1 ==
+					  IF
+					  THEN
+						@Sacamos la matriz a la pila
+						x2
+						
+						@Giramos matriz
+						'Blista(iq)' EVAL 4 GET
+						IF
+						THEN
+						  'Blista(iq)' EVAL 4 GET DUP
+						  COS 'c' STO
+						  SIN 's' STO
+						  @Generamos la matriz de giro (Copy/paste de G2D v1.03): Matriz G: M=G*Mo*G'
+							 c     s 0     0  
+							 s NEG c 0     0  
+							 0     0 c     s  
+							 0     0 s NEG c   
+							 {4 4} çARRY
+							@Fin de generar la Matriz de giro: Matriz G: M=G*Mo*G'
+							SWAP OVER TRAN * * @Hacemos M,G -> G,M -> G,M,G -> G,M,G' y multiplicamos
+						END
+						@Sustituimos matriz
+						'Bmatrix(iq)' STO
+					  END @If
+					NEXT @for
+				END @THENCASE	
+			END @case
+
+
+			@Salida del bucle
+			"MODIFICACIONES:"
+			{
+			{ "Contruir YA!" ´0ª }
+			{ "Condensar una barra" ´1ª }
+			{ "AÒadir apoyo flexible" ´3ª }
+			{ "Apoyo no concordante" ´4ª }
+			{ "Mod. matriz de barra" ´5ª }
+			{ "Subestructura" ´6ª }
+			}
+			1
+			CHOOSE DROP EVAL 'SELECT' STO
+			SELECT
+		END
+
+
+		@Tenemos que crear ahora la Matriz general de la estructura de dimension 3nq∑3nq
+
+		nq 2 * @Generamos la matriz de la estructura llena de cero
+		IDN 0 * @Su finalidad es poder hacer un + al final de cada bucle sin preocuparse por la primera
+		 
+		1 bq FOR iq  @Iniciamos el bucle
+			 
+		  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
+		  "Anexionando la matriz " 1 DISP -1 FREEZE
+		  "de la barra " iq + 2 DISP -1 FREEZE
+		  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
+
+			@Generamos la matriz de la estructura llena de cero
+			nq 2 * IDN 0 * @Matriz estructura llena de ceros terminada
+			@Ahora rellenamos la matriz con las submatrices
+			'Blista(iq)' EVAL 1 GET 'x1' STO @Sacamos el nudo 1
+			'Blista(iq)' EVAL 2 GET 'x2' STO @Sacamos el nudo 2
+			@   [1 | 2]
+			@M= [-----]
+			@   [3 | 4]
+			'Bmatrix(iq)' EVAL {1 1} {2 2} SUB @Sacamos la submatriz 1
+			{'x1*2-1' 'x1*2-1'} SWAP REPL @Incorporamos en la global
+			'Bmatrix(iq)' EVAL {1 3} {2 4} SUB @Sacamos la submatriz 2
+			{'x1*2-1' 'x2*2-1'} SWAP REPL
+			'Bmatrix(iq)' EVAL {3 1} {4 2} SUB @Sacamos la submatriz 3
+			{'x2*2-1' 'x1*2-1'} SWAP REPL
+			'Bmatrix(iq)' EVAL {3 3} {4 4} SUB @Sacamos la submatriz 4
+			{'x2*2-1' 'x2*2-1'} SWAP REPL
+			+ @Sumamos a la matriz anterior.
+		NEXT
+
+		@Se realizan las modificaciones seg˙n el orden que se han dado
+		@a continuaciÛn, se selecciona la modificacion usando el tamaÒo
+		@de la lista interior a postop si es de 3 es un Aflex si es 2 es Anoc
+
+		IF postop SIZE
+		THEN
+
+			1 postop SIZE FOR iq
+			'postop(iq)' EVAL SIZE 'SELECT' STO
+			  
+			  CASE
+					  3 SELECT ==
+					  @ Apoyo flexible
+				  THEN
+					  DUP
+					  'postop(iq)' EVAL 1 GET 'x1' STO
+					  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
+					  "Incluyendo el·stico " 1 DISP -1 FREEZE
+					  "de la barra " x1 + 2 DISP -1 FREEZE
+					  @ $$$$$$$$$$$$$$$$$$$$$$$$ @        
+					  {'x1*2-1' 'x1*2-1'} {'x1*2' 'x1*2'} SUB
+					  
+					  'postop(iq)' EVAL 2 GET 0 
+					  0 'postop(iq)' EVAL 3 GET 
+					  {2 2} çARRY 
+					  
+					  +
+					  {'x1*2-1' 'x1*2-1'} SWAP REPL
+				  END
+					 2 SELECT ==
+					 @ Apoyo no concordante
+				  THEN
+
+					  DUP
+					  'postop(iq)' EVAL EVAL
+					  DUP COS 'c' STO SIN 's' STO
+					  'x1' STO @nudo
+				
+					  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
+					  "Girando apoyo " 1 DISP -1 FREEZE
+					  "de la barra " x1 + 2 DISP -1 FREEZE
+					  @ $$$$$$$$$$$$$$$$$$$$$$$$ @
+				
+					  @Generamos la matriz de giro@
+					  c s NEG
+					  s c
+					  {2 2} çARRY
+					  'x2' STO @Ld@
+					  @Multiplicamos Ld' por la izda@
+					  1 nq  FOR j
+						DUP
+						{'2*x1-1' '2*j-1'} {'2*x1' '2*j'} SUB
+						x2 TRAN SWAP *
+						{'2*x1-1' '2*j-1'} SWAP REPL 
+					  NEXT
+					  @Multiplicamos Ld por la drcha@
+					  1 nq  FOR j
+						DUP
+						{'2*j-1' '2*x1-1'} {'2*j' '2*x1'} SUB
+						x2 *
+						{'2*j-1' '2*x1-1'} SWAP REPL 
+					  NEXT               
+				  END
+
+			  END
+			
+			NEXT
+		END
+		 
 
 	END @del then del CASE. final de seleccionar A2D
 		SEL2 3 ==
