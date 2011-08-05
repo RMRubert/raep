@@ -152,6 +152,7 @@ NEXT
 { "Añadir apoyo flexible" «3» }
 { "Apoyo no concordante" «4» }
 { "Mod. matriz de barra" «5» }
+{ "Subestructura" «6» }
 }
 1
 CHOOSE DROP EVAL 'SELECT' STO
@@ -301,6 +302,7 @@ SWAP 'iq' STO
 
 END
 
+
 END
 
 
@@ -313,11 +315,12 @@ END
 { "Añadir apoyo flexible" «3» }
 { "Apoyo no concordante" «4» }
 { "Mod. matriz de barra" «5» }
+{ "Subestructura" «6» }
 }
 1
 CHOOSE DROP EVAL 'SELECT' STO
 SELECT
-END
+END @While
 
 
 @Tenemos que crear ahora la Matriz general de la estructura de dimension 3nq·3nq
@@ -415,6 +418,7 @@ END
 END
 
 NEXT
+
 
 END
  
