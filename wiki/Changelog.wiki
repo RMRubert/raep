@@ -1,7 +1,10 @@
-= V10=
- _En progreso_
- * Reescritura del código como una única libreria con subrutinas
+= V10.0 [Versión final] =
+Esta sera la ultima version con nuevas caracteristicas, a partir de aqui tan solo se depuraran errores si los hubiera y se me notifican (bien por email o mediante la pestaña Issues). Nuevas caracteristicas:
+ * Añadido soporte para subestructuras en KEST
+ * Añadido subprograma CNDS (CoNDensar para Subestructuras)
  * Añadido soporte para condensar barras en KBAR
+ * Añadido screen mediante GROB al inicio de cada programa
+ * Añadido subprograma de información
 
 ----
 = v7, v8, v9 =
@@ -32,5 +35,7 @@
 = V1 =
  * Es capaz de montar matrices de barras P2D
  * Condensa barras
- * Añade nudos elasticos
+ * Añade apoyos elasticos
  * Añade apoyos no concordantes
+
+Nota: Google code no soporta tildes.
