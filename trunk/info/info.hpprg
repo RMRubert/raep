@@ -1,0 +1,25 @@
+%%HP: T(0)A(D)F(.);
+@ Argumentos:
+@ Autor:
+@ E-mail:
+@ Versión:
+@ Creado con HPUserEdit 6
+
+«
+"INFORMACIÓN"
+{
+{ "Autor:" «"Ricardo Montero Rubert"» }
+{ "Versión:" «"V10.0 stable"» }
+{ "Web: Descargas" «"http://code.google.com/p/raep/"» }
+{ "Asignatura:" «"Análisis de Estructuras I, ETSICCP, UGR"» }
+{ "E-mail" «"RMRubert -at- Gmail -d0t- com"» }
+{ "Licencia de uso:" «"New-BSD"» }
+}
+1
+CHOOSE
+IF
+THEN
+  EVAL 
+END
+MSGBOX
+»
