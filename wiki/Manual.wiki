@@ -1,0 +1,50 @@
+#summary One-sentence summary of this page.
+
+Para que todos los programas funcionen correctamente debe estar activado el modo numérico.
+
+= KEST =
+
+Es un asistente paso a paso que permite construir la matriz de rigidez de la estructura desde cero (salvo si contiene subestructuras en cuyo caso hay que ejecutar KEST, CNDS y luego KEST).
+
+Permite construir tanto Porticos en dos dimensiones (aka P2D) como articuladas en dos dimensiones (aka A2D), por ser similares sólo explicaré P2D.
+
+Debemos de insertar el número de nudos de la estructura, de barras porticas y de propiedades. La propiedad es un sistema para categorizar barras que tienen entre sí iguales A, E e I. También se usa para distinguir entre las barras que no se van a modificar y las que sí cuando se ejecuta la modificación subestructuras.
+
+Tras esto se nos pregunta por cada barra por su nudo inicial, final, su longitud, su angulo (cuidado con que unidades tienes configurada la calculadora) y su propiedad. Tras finalizar esto se nos pide entre construir inmediatamente la matriz de la estructura o incluir alguna modificación.
+
+== Condensar una barra ==
+Ejecución: Tiempo real.
+Se pide la barra a condensar y el grado de libertad. Siendo Ni (nudo inicial) y Nf (nudo final).
+1 Nix
+2 Niy
+3 Nig
+4 Nfx
+5 Nfy
+6 Nfg
+
+== Añadir Tirante ==
+Ejecución: Tiempo real.
+Se pide los datos básicos de un tirante
+
+== Añadir apoyo flexible ==
+Ejecución: Postmontaje.
+Se pide el nudo y las componentes del elástico.
+
+== Apoyo no concordante ==
+Ejecución: Postmontaje.
+Se pide el nudo y el angulo (cuidado con las unidades)
+
+== Modificar matriz de barra ==
+Ejecución: Tiempo real.
+Modificación de casi nula utilidad salvo para casos muy concretos, sustituye la matriz de una barra por la que le pongas. Se recomienda usar una variable para introducirla o MTRW.
+
+== Subestructura ==
+Ejecución: Tiempo real.
+
+= KBAR =
+
+= RCrem =
+
+= CNDS =
+
+= Info =
