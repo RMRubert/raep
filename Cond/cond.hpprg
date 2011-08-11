@@ -1,0 +1,74 @@
+%%HP: T(0)A(D)F(.);
+@ Argumentos:
+@ Autor:
+@ E-mail:
+@ VersiÛn:
+@ Creado con HPUserEdit 6
+
+´
+ {} 0 ç Bmatrix	elem St
+  ´
+Bmatrix EVAL SIZE EVAL DROP 'St' STO  
+"Elementos a condensar:
+{a b c ...}"
+{ "{}
+" { 1 2 } }
+INPUT OBJç
+SORT 'elem' STO
+
+1 elem SIZE
+FOR j
+'Bmatrix' EVAL @Sacamos la matriz para modificarla
+1 St FOR iq 0 NEXT {1 St} çARRY    @Creamos la fila de ceros
+{'elem(j)' 1} SWAP REPL           @Insertamos dicha fila en el n∫ de fila del grado de liberta
+1 St FOR iq 0 NEXT  {St 1} çARRY    @Creamos la columna de ceros
+{1 'elem(j)'} SWAP REPL           @Insertamos dicha columna en la posicion del grado de libertad
+@/MM  ATENCI”N: se queda en la pila almacenada, las siguientes tambiÈn.
+
+@MN
+'Bmatrix' EVAL             @Sacamos la matriz para cortarla
+{1 'elem(j)'} {St 'elem(j)'} SUB          @Nos quedamos con la columna del grado a liberar (la que hemos llenado de ceros la vez anterior)
+0 {1 1} çARRY              @Creamos una matriz unitaria de un 0 [[0]]
+{'elem(j)' 1} SWAP REPL           @Insertamos un cero en la posiciÛn del grado libertad (es decir el elemento correspondiente a NN)
+@/MN  ATENCI”N: se queda en la pila almacenada
+
+@NN^-1  OJO QUE YA VA INVERTIDO!!
+'Bmatrix' EVAL
+{'elem(j)' 'elem(j)'} {'elem(j)' 'elem(j)'} SUB INV    @Extraemos el elemento correspondiente al NN y lo invertimos
+@/NN^-1  ATENCI”N: se queda en la pila almacenada
+
+@NM
+'Bmatrix' EVAL             @Idem que MN pero con fila en vez de columna
+{'elem(j)' 1} {'elem(j)' St} SUB
+0 {1 1} çARRY
+{1 'elem(j)'} SWAP REPL
+@/NM  ATENCI”N: se queda en la pila almacenada
+
+* * - @Hacemos: MM - MN*(NN^-1 * NM)
+'Bmatrix' STO
+NEXT
+
+"øDESEA MOSTRAR UNA..."
+{
+{ "Matriz reducida ( )" ´1ª }
+{ "Matriz completa (0)" ´0ª }
+}
+1 
+CHOOSE DROP EVAL
+
+IF 
+THEN
+elem EVAL
+  1 elem SIZE FOR j
+      Bmatrix
+      OVER
+      COL- DROP
+      OVER
+      ROW- DROP
+      'Bmatrix' STO
+      DROP
+  NEXT
+END
+Bmatrix
+  ª
+ª
