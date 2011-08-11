@@ -10,7 +10,9 @@ Permite construir tanto Porticos en dos dimensiones (aka P2D) como articuladas e
 
 Debemos de insertar el número de nudos de la estructura, de barras porticas y de propiedades. La propiedad es un sistema para categorizar barras que tienen entre sí iguales A, E e I. También se usa para distinguir entre las barras que no se van a modificar y las que sí cuando se ejecuta la modificación subestructuras.
 
-Tras esto se nos pregunta por cada barra por su nudo inicial, final, su longitud, su angulo (cuidado con que unidades tienes configurada la calculadora) y su propiedad. Tras finalizar esto se nos pide entre construir inmediatamente la matriz de la estructura o incluir alguna modificación.
+Tras esto se nos pregunta por cada barra por su nudo inicial, final, su longitud, su angulo _(cuidado con que unidades tienes configurada la calculadora)_ y su propiedad. Tras finalizar esto se nos pide entre construir inmediatamente la matriz de la estructura o incluir alguna modificación.
+
+Las modificaciones pueden ser ejecutadas en *tiempo real* esto es, inmediatamente después de darle los datos necesarios se realizan los cambios pedidos o en *postmontaje* todas las operaciones postmontaje son almacenadas en una lista y los cambios se realizan tras el montaje y en el mismo orden en el que fueron ejecutadas en el programa (puedes añadir un ap. flexible primero y luego girar el apoyo o hacerlo al reves, dependiendo de si lo ejecutas en un orden o en otro) .
 
 == Condensar una barra ==
 Ejecución: Tiempo real.
@@ -28,7 +30,7 @@ Se pide los datos básicos de un tirante
 
 == Añadir apoyo flexible ==
 Ejecución: Postmontaje.
-Se pide el nudo y las componentes del elástico.
+Se pide el nudo y las componentes del elástico. No existe en A2D.
 
 == Apoyo no concordante ==
 Ejecución: Postmontaje.
@@ -36,10 +38,13 @@ Se pide el nudo y el angulo (cuidado con las unidades)
 
 == Modificar matriz de barra ==
 Ejecución: Tiempo real.
-Modificación de casi nula utilidad salvo para casos muy concretos, sustituye la matriz de una barra por la que le pongas. Se recomienda usar una variable para introducirla o MTRW.
+Modificación de casi nula utilidad salvo para casos muy concretos, sustituye la matriz de una barra por la que le pongas. _Se recomienda usar una variable para introducirla o MTRW._
 
 == Subestructura ==
 Ejecución: Tiempo real.
+Pide la propiedad de las barras, todas las barras con esa propiedad seran sustituidas por la matriz que se pide debajo _(igualmente se recomienda introducir con una variable tras usar CNDS o en su defecto con MTRW),_ la matriz de la subestructura es girada internamente con el dato del angulo de la barra (toma ya!).
+
+Finalmente el programa nos pregunta si mostrar la Kest (la matriz de rigidez de la estructura) o si mostrar además también Kbar. Kbar es una lista que contiene las matrices de cada barra tal que: {barra1 barra2 barra3 barra4 tirante1 tirante2} es decir primero las matrices de cada barra en el orden introducido y despues la de los tirantes. _Se recomienda usar TOOL VIEW para verlas mejor. Tambien se puede usar los comandos REVLIST y EVAL lo que nos dejara en la pila las matrices de cada barra por orden en el que lo introducimos (pero esto es manejo de listas)._
 
 = KBAR =
 
