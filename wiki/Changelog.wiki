@@ -1,3 +1,5 @@
+#Summary Cambios que ha habido según la versión del programa.
+
 = V10.0 [Versión final] =
 Esta sera la ultima version con nuevas caracteristicas, a partir de aqui tan solo se depuraran errores si los hubiera y se me notifican (bien por email o mediante la pestaña Issues). Nuevas caracteristicas:
  * Añadido soporte para subestructuras en KEST
