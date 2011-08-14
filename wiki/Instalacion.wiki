@@ -1,3 +1,5 @@
+#summary Explicación de los pasos a seguir para instalar el programa.
+
 = Instalación =
 
 == Extracción ==
