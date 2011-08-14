@@ -1,9 +1,9 @@
-#summary One-sentence summary of this page.
+#summary Breve manual para explicar el funcionamiento interno.
 
 Para que todos los programas funcionen correctamente debe estar activado el modo numérico.
 
 = KEST =
-
+*K estructura*
 Es un asistente paso a paso que permite construir la matriz de rigidez de la estructura desde cero (salvo si contiene subestructuras en cuyo caso hay que ejecutar KEST, CNDS y luego KEST).
 
 Permite construir tanto Porticos en dos dimensiones (aka P2D) como articuladas en dos dimensiones (aka A2D), por ser similares sólo explicaré P2D.
@@ -46,10 +46,21 @@ Pide la propiedad de las barras, todas las barras con esa propiedad seran sustit
 
 Finalmente el programa nos pregunta si mostrar la Kest (la matriz de rigidez de la estructura) o si mostrar además también Kbar. Kbar es una lista que contiene las matrices de cada barra tal que: {barra1 barra2 barra3 barra4 tirante1 tirante2} es decir primero las matrices de cada barra en el orden introducido y despues la de los tirantes. _Se recomienda usar TOOL VIEW para verlas mejor. Tambien se puede usar los comandos REVLIST y EVAL lo que nos dejara en la pila las matrices de cada barra por orden en el que lo introducimos (pero esto es manejo de listas)._
 
+El resultado de este programa se guarda en la variable EstM, con la finalidad de poder recuperarla tras haber usado RCrem o CNDS.
+
 = KBAR =
+*K barra*
+Es simplemente un subprograma de Kest, este programa calcula la matriz de rigidez de una barra P2D, A2D o P2D~pandeo. En Pandeo te lo deja en función de C1, C2, C3 y C4. El programa elimina todo lo que haya en las variables C1, C2, C3 y C4 cuando ejecuta P2D~pandeo. _Si deseas añadir las variables Cx a la calculadora hazlo despues de ejecutar el programa_
 
 = RCrem =
+*Row & Column remover*
+Es un pequeño programa que sirve para eliminar filas y/o columnas de la matriz con la finalidad de dejar una matriz util para poder resolver el sistema desacoplado con el programa de la calculadora _NUM.SLV -> 4. Solve lin system_ obviamente deberas haber calculado previamente los vectores F y F´. Debes eliminar todas lo que quieras a la vez usando el corchete así {3 4 9 7}. Da igual el orden en el que las metas ya que el programa las ordena internamente y las borra de mayor a menor.
 
 = CNDS =
+*CoNDensar para Subestructura*
+Es un programa que sirve para condensar matrices y que se nos permita usar esta matriz (tras guardarla en una variable) como matriz de apoyo para subestructuras.
+Las matrices reducidas son lo que hay que usar para este caso. Si nos interesara conservar el tamaño de la matriz usariamos las completas y obtendremos una fila de ceros en el lugar condensado.
 
 = Info =
+*Información*
+Da información sobre el autor y otras cosas del programa.
