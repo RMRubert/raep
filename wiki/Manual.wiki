@@ -38,7 +38,7 @@ Se pide el nudo y el angulo (cuidado con las unidades)
 
 == Modificar matriz de barra ==
 Ejecución: Tiempo real.
-Modificación de casi nula utilidad salvo para casos muy concretos, sustituye la matriz de una barra por la que le pongas. _Se recomienda usar una variable para introducirla o MTRW._
+Modificación de casi nula utilidad (puede utilizarse en ejercicios concretos de Pandeo, o para ejercicios muy simples de subestructuras) salvo para casos muy concretos, sustituye la matriz de una barra por la que le pongas. _Se recomienda usar una variable para introducirla o MTRW._
 
 == Subestructura ==
 Ejecución: Tiempo real.
