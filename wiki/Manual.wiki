@@ -59,7 +59,7 @@ Es un pequeño programa que sirve para eliminar filas y/o columnas de la matriz 
 = CNDS =
 *CoNDensar para Subestructura*
 Es un programa que sirve para condensar matrices y que se nos permita usar esta matriz (tras guardarla en una variable) como matriz de apoyo para subestructuras.
-Las matrices reducidas son lo que hay que usar para este caso. Si nos interesara conservar el tamaño de la matriz usariamos las completas y obtendremos una fila de ceros en el lugar condensado.
+Las matrices reducidas son lo que hay que usar para este caso. Si nos interesara conservar el tamaño de la matriz usariamos las completas y obtendremos una fila de ceros en el lugar condensado. No hace falta que te diga que no puedes condensar el grado 1 y 4, 2 y 5, ó 3 y 6 a la vez porque da error. Aunque es posible condensar los grados 1 ó 4, en nuestra asignatura no se suelen condensar.
 
 = Info =
 *Información*
