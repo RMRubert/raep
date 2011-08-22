@@ -64,3 +64,7 @@ Las matrices reducidas son lo que hay que usar para este caso. Si nos interesara
 = Info =
 *Información*
 Da información sobre el autor y otras cosas del programa.
+
+= Criterio de signos =
+Es el mismo criterio que en la asignatura Análisis de Estructuras I en el curso 2010/2011. Es decir:
+http://i.imgur.com/i9hF0.jpg http://i.imgur.com/IhBFh.jpg
