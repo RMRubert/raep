@@ -1,6 +1,8 @@
 #summary Breve manual para explicar el funcionamiento interno.
 
-Para que todos los programas funcionen correctamente debe estar activado el modo numérico.
+*Última revisión del manual:* 21/09/2011
+
+Para que todos los programas funcionen correctamente debe estar activado el modo numérico. Yo recomiendo a titulo personal activar los siguientes Flags aunque no son necesarios para el correcto funcionamiento: 72,73,74,82,90,97,98,110 y 114. La mayoría sólo cambian la forma de ver las cosas alineando a la izda y poniendo la fuente pequeña.
 
 = KEST =
 *K estructura*
@@ -8,7 +10,7 @@ Es un asistente paso a paso que permite construir la matriz de rigidez de la est
 
 Permite construir tanto Porticos en dos dimensiones (aka P2D) como articuladas en dos dimensiones (aka A2D), por ser similares sólo explicaré P2D.
 
-Debemos de insertar el número de nudos de la estructura, de barras porticas y de propiedades. La propiedad es un sistema para categorizar barras que tienen entre sí iguales A, E e I. También se usa para distinguir entre las barras que no se van a modificar y las que sí cuando se ejecuta la modificación subestructuras.
+Debemos de insertar el número de nudos de la estructura, de barras pórticas y de propiedades. La propiedad es un sistema para categorizar barras que tienen entre sí iguales A, E e I. También se usa para distinguir entre las barras que no se van a modificar y las que sí cuando se ejecuta la modificación subestructuras.
 
 Tras esto se nos pregunta por cada barra por su nudo inicial, final, su longitud, su angulo _(cuidado con que unidades tienes configurada la calculadora)_ y su propiedad. Tras finalizar esto se nos pide entre construir inmediatamente la matriz de la estructura o incluir alguna modificación.
 
@@ -26,11 +28,11 @@ Se pide la barra a condensar y el grado de libertad. Siendo Ni (nudo inicial) y 
 
 == Añadir Tirante ==
 Ejecución: Tiempo real.
-Se pide los datos básicos de un tirante
+Se pide los datos básicos de un tirante. No existe en A2D.
 
 == Añadir apoyo flexible ==
 Ejecución: Postmontaje.
-Se pide el nudo y las componentes del elástico. No existe en A2D.
+Se pide el nudo y las componentes del elástico. 
 
 == Apoyo no concordante ==
 Ejecución: Postmontaje.
@@ -44,13 +46,13 @@ Modificación de casi nula utilidad (puede utilizarse en ejercicios concretos de
 Ejecución: Tiempo real.
 Pide la propiedad de las barras, todas las barras con esa propiedad seran sustituidas por la matriz que se pide debajo _(igualmente se recomienda introducir con una variable tras usar CNDS o en su defecto con MTRW),_ la matriz de la subestructura es girada internamente con el dato del angulo de la barra (toma ya!).
 
-Finalmente el programa nos pregunta si mostrar la Kest (la matriz de rigidez de la estructura) o si mostrar además también Kbar. Kbar es una lista que contiene las matrices de cada barra tal que: {barra1 barra2 barra3 barra4 tirante1 tirante2} es decir primero las matrices de cada barra en el orden introducido y despues la de los tirantes. _Se recomienda usar TOOL VIEW para verlas mejor. Tambien se puede usar los comandos REVLIST y EVAL lo que nos dejara en la pila las matrices de cada barra por orden en el que lo introducimos (pero esto es manejo de listas)._
+Finalmente el programa nos pregunta si mostrar la Kest (la matriz de rigidez de la estructura) o si mostrar además también Kbar. Kbar es una lista que contiene las matrices de cada barra tal que: {barra1 barra2 barra3 barra4 tirante1 tirante2} es decir primero las matrices de cada barra en el orden introducido y despues la de los tirantes. _Se recomienda usar TOOL VIEW para verlas mejor. También se puede usar los comandos REVLIST y EVAL lo que nos dejara en la pila las matrices de cada barra por orden en el que lo introducimos (pero esto es manejo de listas)._
 
 El resultado de este programa se guarda en la variable EstM, con la finalidad de poder recuperarla tras haber usado RCrem o CNDS.
 
 = KBAR =
 *K barra*
-Es simplemente un subprograma de Kest, este programa calcula la matriz de rigidez de una barra P2D, A2D o P2D~pandeo. En Pandeo te lo deja en función de C1, C2, C3 y C4. El programa elimina todo lo que haya en las variables C1, C2, C3 y C4 cuando ejecuta P2D~pandeo. _Si deseas añadir las variables Cx a la calculadora hazlo despues de ejecutar el programa_
+Es simplemente un subprograma de Kest, este programa calcula la matriz de rigidez de una barra P2D, A2D o P2D~pandeo. En Pandeo te lo deja en función de C1, C2, C3 y C4. El programa elimina todo lo que haya en las variables C1, C2, C3 y C4 cuando ejecuta P2D~pandeo. _Si deseas añadir las variables Cx a la calculadora hazlo despues de ejecutar el programa, usa el comando PARTFRAC para reducir la matriz._
 
 = RCrem =
 *Row & Column remover*
@@ -59,7 +61,7 @@ Es un pequeño programa que sirve para eliminar filas y/o columnas de la matriz 
 = CNDS =
 *CoNDensar para Subestructura*
 Es un programa que sirve para condensar matrices y que se nos permita usar esta matriz (tras guardarla en una variable) como matriz de apoyo para subestructuras.
-Las matrices reducidas son lo que hay que usar para este caso. Si nos interesara conservar el tamaño de la matriz usariamos las completas y obtendremos una fila de ceros en el lugar condensado. No hace falta que te diga que no puedes condensar el grado 1 y 4, 2 y 5, ó 3 y 6 a la vez porque da error. Aunque es posible condensar los grados 1 ó 4, en nuestra asignatura no se suelen condensar.
+Las matrices reducidas son lo que hay que usar para este caso. Si nos interesara conservar el tamaño de la matriz usaríamos las completas y obtendremos una fila de ceros en el lugar condensado. No hace falta que te diga que no puedes condensar el grado 1 y 4, 2 y 5, ó 3 y 6 a la vez porque da error. Aunque es posible condensar los grados 1 ó 4, en nuestra asignatura no se suelen condensar.
 
 = Info =
 *Información*
