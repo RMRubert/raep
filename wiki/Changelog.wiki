@@ -1,5 +1,8 @@
 #summary Cambios que ha habido según la versión del programa.
 
+= V11 a V20 =
+Es muy posible que RAEP avance de manera inestable hasta dar soporte a la asignatura AEII, las partes de AEI (P2D,A2D y Pandeo) seguirán siendo estables aunque se utilice una versión superior.
+
 = V10.0 [Versión final] =
 Esta sera la ultima version con nuevas caracteristicas, a partir de aqui tan solo se depuraran errores si los hubiera y se me notifican (bien por email o mediante la pestaña Issues). Nuevas caracteristicas:
  * Añadido soporte para subestructuras en KEST
