@@ -1,8 +1,9 @@
 %%HP: T(0)A(D)F(.);
 @ Argumentos:
 @ Author: Ricardo M. Rubert
-@ E-mail: RMRubert -at- gmail.com
-@ Version: 4.0 alpha
+@ E-mail: RMRubert -at- gmail -·- com
+@ Version: 10.0 alpha
+@ Posibles fallos: Apartados de subestructuras no testados
 @ Created using HPUserEdit 5 [www.unparche.com]
 @
 
