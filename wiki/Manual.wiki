@@ -44,6 +44,7 @@ Modificación de casi nula utilidad (puede utilizarse en ejercicios concretos de
 
 == Subestructura ==
 Ejecución: Tiempo real.
+Todo lo referente a subestructuras en este programa *no ha sido testado* y por tanto yo no me tomaría el resultado como si fuese verdad absoluta, *el resto si ha sido testado.*
 Pide la propiedad de las barras, todas las barras con esa propiedad seran sustituidas por la matriz que se pide debajo _(igualmente se recomienda introducir con una variable tras usar CNDS o en su defecto con MTRW),_ la matriz de la subestructura es girada internamente con el dato del angulo de la barra (toma ya!).
 
 Finalmente el programa nos pregunta si mostrar la Kest (la matriz de rigidez de la estructura) o si mostrar además también Kbar. Kbar es una lista que contiene las matrices de cada barra tal que: {barra1 barra2 barra3 barra4 tirante1 tirante2} es decir primero las matrices de cada barra en el orden introducido y despues la de los tirantes. _Se recomienda usar TOOL VIEW para verlas mejor. También se puede usar los comandos REVLIST y EVAL lo que nos dejara en la pila las matrices de cada barra por orden en el que lo introducimos (pero esto es manejo de listas)._
