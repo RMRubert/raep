@@ -2,7 +2,7 @@
 
 *Última revisión del manual:* 20/04/2012
 
-Para que todos los programas funcionen correctamente *debe estar activado el modo numérico.* Yo recomiendo a titulo personal activar los siguientes Flags aunque no son necesarios para el correcto funcionamiento: 72,73,74,82,90,97,98,110 y 114. La mayoría sólo cambian la forma de ver las cosas alineando a la izda y poniendo la fuente pequeña.
+Para que todos los programas funcionen correctamente *debe estar activado el modo numérico(y muy probablemente el RPN).* Yo recomiendo a titulo personal activar los siguientes Flags aunque no son necesarios para el correcto funcionamiento: 72,73,74,82,90,97,98,110 y 114. La mayoría sólo cambian la forma de ver las cosas alineando a la izda y poniendo la fuente pequeña.
 
 = KEST =
 *K estructura*
