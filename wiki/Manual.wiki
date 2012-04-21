@@ -1,6 +1,6 @@
 #summary Breve manual para explicar el funcionamiento interno.
 
-*Última revisión del manual:* 20/04/2012
+*Última revisión del manual:* 21/04/2012
 
 Para que todos los programas funcionen correctamente *debe estar activado el modo numérico(y muy probablemente el RPN).* Yo recomiendo a titulo personal activar los siguientes Flags aunque no son necesarios para el correcto funcionamiento: 72,73,74,82,90,97,98,110 y 114. La mayoría sólo cambian la forma de ver las cosas alineando a la izda y poniendo la fuente pequeña.
 
@@ -48,6 +48,10 @@ Todo lo referente a subestructuras en este programa *no ha sido testado* y por t
 Pide la propiedad de las barras, todas las barras con esa propiedad seran sustituidas por la matriz que se pide debajo _(igualmente se recomienda introducir con una variable tras usar CNDS o en su defecto con MTRW),_ la matriz de la subestructura es girada internamente con el dato del angulo de la barra (toma ya!).
 
 Finalmente el programa nos pregunta si mostrar la Kest (la matriz de rigidez de la estructura) o si mostrar además también Kbar. Kbar es una lista que contiene las matrices de cada barra tal que: {barra1 barra2 barra3 barra4 tirante1 tirante2} es decir primero las matrices de cada barra en el orden introducido y despues la de los tirantes. _Se recomienda usar TOOL VIEW para verlas mejor. También se puede usar los comandos REVLIST y EVAL lo que nos dejara en la pila las matrices de cada barra por orden en el que lo introducimos (pero esto es manejo de listas)._
+
+*Atención:* El orden de las barras en las listas puede cambiar según tu configuración de la HP, si usas TOOL VIEW(F2) para verlas ten en cuenta que si aparecen en vertical la de arriba sería la de la barra 1, y la de abajo la de la última barra (o tirante si lo hubiera), mientras que si te salen en horizontal la primera sería la de la izquiera. 
+
+_Ricardoconsejo: Crea la siguiente lista en tu HP {1 2 3 4 11 12} y usa TOOL VIEW(F2) para verla, según el orden que aparezca es el orden en el que aparecerá tu lista de barras {barra1 barra2 barra3 barra4 tirante1 tirante2}_
 
 El resultado de este programa se guarda en la variable EstM, con la finalidad de poder recuperarla tras haber usado RCrem o CNDS.
 
