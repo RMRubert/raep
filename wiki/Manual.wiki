@@ -79,7 +79,7 @@ Por tanto depende del usuario y de su modo de trabajo el remover las filas y col
 
 Por tanto para esa gente que es lo suficientemente inepta para no entender como funciona el programa les hago un ejemplo. Supón que tienes 5 nudos y por tanto una matriz de 15x15. Y que resulta que quieres aplicar condensación en el desplazamiento en y del 2º nudo (GDL:5). Tras usar *KEST*, debes usar *RCrem* para remover, todos los nudos condensados como el 5, y todos aquellos cuyos desplazamiento sea cero. Y  lo que es mejor, no tienes que preocuparte porque ahora el 7 sea 6 o el 14 sea el 13. Tu pones toda la lista de nudos en *RCrem* y el programa se encarga de borrarlos todos. ¿Donde está el fallo de mi programa? Ninguno, sólo hay fallo en que no sepas usarlo.
 
-Así que la próxima vez antes de que critiquen tan alegremente por ahí, usen la pestaña Issues para comentarme el problema y les daré la solución.
+Así que la próxima vez antes de que critiquen tan alegremente por ahí, usen la pestaña [http://code.google.com/p/raep/issues/list Issues] para comentarme el problema y les daré la solución.
 
 
 = Criterio de signos =
