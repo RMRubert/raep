@@ -18,7 +18,7 @@ Las modificaciones pueden ser ejecutadas en *tiempo real* esto es, inmediatament
 
 == Condensar una barra ==
 Ejecución: Tiempo real.
-Se pide la barra a condensar y el grado de libertad. Siendo Ni (nudo inicial) y Nf (nudo final).
+Se pide la barra a condensar y el grado de libertad. Siendo Ni (nudo inicial) y Nf (nudo final). Recomiendo ver la nota al final de este manual ya que hay algunos personas que no se aclaran con la condensación.
 1 Nix
 2 Niy
 3 Nig
@@ -71,6 +71,16 @@ Las matrices reducidas son lo que hay que usar para este caso. Si nos interesara
 = Info =
 *Información*
 Da información sobre el autor y otras cosas del programa.
+
+= Notas sobre la condensación =
+Algunas personas dice por ahí (sin tener mucha idea de como funciona el programa y de que significa condensar) que mi programa tiene errores o fallos en la condensación porque no remueve la fila y columna tras hacerla. Eso es mentira, lo hace así, pero no es un error, es como debe hacerse. Mi programa condensa perfectamente, pero en vez de eliminar la fila y columna referente al grado de libertad  condensado lo deja relleno de ceros. Esto se hace con la finalidad de que cada coordenada tenga exactamente la misma posición en el resultado final de la matriz que si no se hubiera condensado. Esto se hace así para evitar errores al usar *RCrem* para remover pudiendo poner un número que no corresponda con el que de verdad quieres remover. (Si borráramos la Fila y Columna tras condensar, todas las GDL posteriores tendrían una posición menos, así la mantiene)
+
+Por tanto depende del usuario y de su modo de trabajo el remover las filas y columnas por el mismo al condensar usando *RCrem* antes de usar el LinSolve de la calculadora, al igual que es el deber del usuario remover las filas y columnas en aquellas posiciones cuyos desplazamientos sean nulos.
+
+Por tanto para esa gente que es lo suficientemente inepta para no entender como funciona el programa les hago un ejemplo. Supón que tienes 5 nudos y por tanto una matriz de 15x15. Y que resulta que quieres aplicar condensación en el desplazamiento en y del 2º nudo (GDL:5). Tras usar *KEST*, debes usar *RCrem* para remover, todos los nudos condensados como el 5, y todos aquellos cuyos desplazamiento sea cero. Y  lo que es mejor, no tienes que preocuparte porque ahora el 7 sea 6 o el 14 sea el 13. Tu pones toda la lista de nudos en *RCrem* y el programa se encarga de borrarlos todos. ¿Donde está el fallo de mi programa? Ninguno, sólo hay fallo en que no sepas usarlo.
+
+Así que la próxima vez antes de que critiquen tan alegremente por ahí, usen la pestaña Issues para comentarme el problema y les daré la solución.
+
 
 = Criterio de signos =
 Es el mismo criterio que en la asignatura Análisis de Estructuras I en el curso 2010/2011. Es decir:
