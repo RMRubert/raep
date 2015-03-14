@@ -1,0 +1,87 @@
+**Última revisión del manual:** 21/04/2012
+
+Para que todos los programas funcionen correctamente **debe estar activado el modo numérico(y muy probablemente el RPN).** Yo recomiendo a titulo personal activar los siguientes Flags aunque no son necesarios para el correcto funcionamiento: 72,73,74,82,90,97,98,110 y 114. La mayoría sólo cambian la forma de ver las cosas alineando a la izda y poniendo la fuente pequeña.
+
+# KEST #
+**K estructura**
+Es un asistente paso a paso que permite construir la matriz de rigidez de la estructura desde cero (salvo si contiene subestructuras en cuyo caso hay que ejecutar KEST, CNDS y luego KEST).
+
+Permite construir tanto Porticos en dos dimensiones (aka P2D) como articuladas en dos dimensiones (aka A2D), por ser similares sólo explicaré P2D.
+
+Debemos de insertar el número de nudos de la estructura, de barras pórticas y de propiedades. La propiedad es un sistema para categorizar barras que tienen entre sí iguales A, E e I. También se usa para distinguir entre las barras que no se van a modificar y las que sí cuando se ejecuta la modificación subestructuras.
+
+Tras esto se nos pregunta por cada barra por su nudo inicial, final, su longitud, su angulo _(cuidado con que unidades tienes configurada la calculadora)_ y su propiedad. Tras finalizar esto se nos pide entre construir inmediatamente la matriz de la estructura o incluir alguna modificación.
+
+Las modificaciones pueden ser ejecutadas en **tiempo real** esto es, inmediatamente después de darle los datos necesarios se realizan los cambios pedidos o en **postmontaje** todas las operaciones postmontaje son almacenadas en una lista y los cambios se realizan tras el montaje y en el mismo orden en el que fueron ejecutadas en el programa (puedes añadir un ap. flexible primero y luego girar el apoyo o hacerlo al reves, dependiendo de si lo ejecutas en un orden o en otro) .
+
+## Condensar una barra ##
+Ejecución: Tiempo real.
+Se pide la barra a condensar y el grado de libertad. Siendo Ni (nudo inicial) y Nf (nudo final). Recomiendo ver la nota al final de este manual ya que hay algunos personas que no se aclaran con la condensación.
+1 Nix
+2 Niy
+3 Nig
+4 Nfx
+5 Nfy
+6 Nfg
+
+## Añadir Tirante ##
+Ejecución: Tiempo real.
+Se pide los datos básicos de un tirante. No existe en A2D.
+
+## Añadir apoyo flexible ##
+Ejecución: Postmontaje.
+Se pide el nudo y las componentes del elástico.
+
+## Apoyo no concordante ##
+Ejecución: Postmontaje.
+Se pide el nudo y el angulo (cuidado con las unidades)
+
+## Modificar matriz de barra ##
+Ejecución: Tiempo real.
+Modificación de casi nula utilidad (puede utilizarse en ejercicios concretos de Pandeo, o para ejercicios muy simples de subestructuras) salvo para casos muy concretos, sustituye la matriz de una barra por la que le pongas. _Se recomienda usar una variable para introducirla o MTRW._
+
+## Subestructura ##
+Ejecución: Tiempo real.
+Todo lo referente a subestructuras en este programa **no ha sido testado** y por tanto yo no me tomaría el resultado como si fuese verdad absoluta, **el resto si ha sido testado.**
+Pide la propiedad de las barras, todas las barras con esa propiedad seran sustituidas por la matriz que se pide debajo _(igualmente se recomienda introducir con una variable tras usar CNDS o en su defecto con MTRW),_ la matriz de la subestructura es girada internamente con el dato del angulo de la barra (toma ya!).
+
+Finalmente el programa nos pregunta si mostrar la Kest (la matriz de rigidez de la estructura) o si mostrar además también Kbar. Kbar es una lista que contiene las matrices de cada barra tal que: {barra1 barra2 barra3 barra4 tirante1 tirante2} es decir primero las matrices de cada barra en el orden introducido y despues la de los tirantes. _Se recomienda usar TOOL VIEW para verlas mejor. También se puede usar los comandos REVLIST y EVAL lo que nos dejara en la pila las matrices de cada barra por orden en el que lo introducimos (pero esto es manejo de listas)._
+
+**Atención:** El orden de las barras en las listas puede cambiar según tu configuración de la HP, si usas TOOL VIEW(F2) para verlas ten en cuenta que si aparecen en vertical la de arriba sería la de la barra 1, y la de abajo la de la última barra (o tirante si lo hubiera), mientras que si te salen en horizontal la primera sería la de la izquiera.
+
+_Ricardoconsejo: Crea la siguiente lista en tu HP {1 2 3 4 11 12} y usa TOOL VIEW(F2) para verla, según el orden que aparezca es el orden en el que aparecerá tu lista de barras {barra1 barra2 barra3 barra4 tirante1 tirante2}_
+
+El resultado de este programa se guarda en la variable EstM, con la finalidad de poder recuperarla tras haber usado RCrem o CNDS.
+
+# KBAR #
+**K barra**
+Es simplemente un subprograma de Kest, este programa calcula la matriz de rigidez de una barra P2D, A2D o P2D~pandeo. En Pandeo te lo deja en función de C1, C2, C3 y C4. El programa elimina todo lo que haya en las variables C1, C2, C3 y C4 cuando ejecuta P2D~pandeo. _Si deseas añadir las variables Cx a la calculadora hazlo despues de ejecutar el programa, usa el comando PARTFRAC para reducir la matriz._
+
+# RCrem #
+**Row & Column remover**
+Es un pequeño programa que sirve para eliminar filas y/o columnas de la matriz con la finalidad de dejar una matriz util para poder resolver el sistema desacoplado con el programa de la calculadora _NUM.SLV -> 4. Solve lin system_ obviamente deberas haber calculado previamente los vectores F y F´. Debes eliminar todas lo que quieras a la vez usando el corchete así {3 4 9 7}. Da igual el orden en el que las metas ya que el programa las ordena internamente y las borra de mayor a menor.
+
+# CNDS #
+**CoNDensar para Subestructura**
+Es un programa que sirve para condensar matrices y que se nos permita usar esta matriz (tras guardarla en una variable) como matriz de apoyo para subestructuras.
+Las matrices reducidas son lo que hay que usar para este caso. Si nos interesara conservar el tamaño de la matriz usaríamos las completas y obtendremos una fila de ceros en el lugar condensado. No hace falta que te diga que no puedes condensar el grado 1 y 4, 2 y 5, ó 3 y 6 a la vez porque da error. Aunque es posible condensar los grados 1 ó 4, en nuestra asignatura no se suelen condensar.
+
+# Info #
+**Información**
+Da información sobre el autor y otras cosas del programa.
+
+# Notas sobre la condensación #
+Algunas personas dicen por ahí (sin tener mucha idea de como funciona el programa y de que significa condensar) que mi programa tiene errores o fallos en la condensación porque no remueve la fila y columna tras hacerla. Es cierto que lo hace así, pero no es un error, es tal y como está programado y tiene una explicación.
+
+La explicación consiste en que al no borrar la fila y columnas y sustituirla por ceros, la posición del resto de filas y columnas es la misma tanto antes como después de la condensación. El motivo de hacerlo así es para evitar tener que calcular las nuevas posiciones del resto de filas al utilizar el subprograma **RCrem**. Ya que si borráramos la Fila y Columna tras condensar, todas las GDL posteriores tendrían una posición menos, mientras que si dejamos la fila rellena de ceros mantiene la posición
+
+Por tanto **depende del usuario** y de su modo de trabajo (al resolver el problema) el remover las filas y columnas por el mismo al condensar usando **RCrem** antes de usar el LinSolve de la calculadora, al igual que es el deber del usuario remover las filas y columnas en aquellas posiciones cuyos desplazamientos sean nulos. Recordemos que este programa es un asistente, para facilitar la rapidez de cálculo del problema pero en ningún momento pretende resolver por si sólo el mismo.
+
+Por tanto para toda esa gente que ha criticado sin comprender realmente  como funciona el programa les hago un ejemplo. Supón que tienes 5 nudos y por tanto una matriz de 15x15. Y que resulta que quieres aplicar condensación en el desplazamiento en y del 2º nudo (GDL:5). Tras usar **KEST**, debes usar **RCrem** para remover, todos los nudos condensados como el 5, y todos aquellos cuyos desplazamiento sea cero. Y  lo que es mejor, no tienes que preocuparte porque ahora el 7 sea 6 o el 14 sea el 13. Tu pones toda la lista de nudos en **RCrem** y el programa se encarga de borrarlos todos. ¿Donde está el fallo de mi programa? Ninguno, sólo hay fallo si no sabes usarlo.
+
+Si aun así a algún lector no le ha quedado suficientemente claro puede ir a [Issues](http://code.google.com/p/raep/issues/list) para comentarme el problema y le ayudaré a solucionar su problema.
+
+
+# Criterio de signos #
+Es el mismo criterio que en la asignatura Análisis de Estructuras I en el curso 2010/2011. Es decir:
+![http://i.imgur.com/i9hF0.jpg](http://i.imgur.com/i9hF0.jpg) ![http://i.imgur.com/IhBFh.jpg](http://i.imgur.com/IhBFh.jpg)
